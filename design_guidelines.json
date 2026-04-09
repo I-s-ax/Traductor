@@ -1,0 +1,136 @@
+{
+  "theme_and_archetype": {
+    "domain": "AI Translation SaaS",
+    "theme": "dark",
+    "archetype": "4 (Swiss & High-Contrast)",
+    "vibe": "Objective, rigid, functional, high-end technical"
+  },
+  "colors": {
+    "background": {
+      "main": "#050505",
+      "surface": "#0F0F0F",
+      "surface_hover": "#171717",
+      "panel": "#121212"
+    },
+    "border": {
+      "default": "#222222",
+      "focus": "#D4FF00",
+      "subtle": "#1A1A1A"
+    },
+    "text": {
+      "primary": "#F5F5F5",
+      "secondary": "#A1A1AA",
+      "muted": "#52525B",
+      "inverse": "#050505"
+    },
+    "primary": {
+      "main": "#D4FF00",
+      "hover": "#C2E600",
+      "glow": "rgba(212, 255, 0, 0.4)"
+    },
+    "ai_providers": {
+      "openai": "#10A37F",
+      "gemini": "#4285F4",
+      "claude": "#D97757"
+    }
+  },
+  "typography": {
+    "fonts": {
+      "heading": "Chivo, sans-serif",
+      "body": "IBM Plex Sans, sans-serif",
+      "mono": "JetBrains Mono, monospace"
+    },
+    "scale": {
+      "h1": "text-4xl sm:text-5xl lg:text-6xl tracking-tighter font-black",
+      "h2": "text-2xl sm:text-3xl font-bold tracking-tight",
+      "h3": "text-xl font-semibold",
+      "body": "text-base leading-relaxed font-light",
+      "label": "text-xs tracking-[0.2em] uppercase font-mono"
+    }
+  },
+  "spacing_and_layout": {
+    "philosophy": "Generous spacing. Strict grid hierarchy. Density where needed (provider select, language pair).",
+    "grid_mode": "Control Room Grid (Dense, Data Correlation, Scanability)",
+    "container_padding": "p-6 md:p-12 lg:p-16",
+    "gap": "gap-6 md:gap-8",
+    "alignment": "Left-aligned for all form/functional elements. Center only for empty states or hero."
+  },
+  "surface_strategies": {
+    "cards": "Grid Borders: border-collapse style. border-r border-b border-white/10. Flat backgrounds, no soft shadows. Sharp edges (rounded-none or max rounded-sm).",
+    "dropzone": "Retro-Futurism / Technical: Deep black background with 1px repeating linear-gradient (scanlines) or simple dashed border (border-white/20). On drag active: border changes to #D4FF00 with outer glow.",
+    "buttons": "Neumorphism twist: Sharp 1px border. Solid background for primary (#D4FF00), text black. Hover: -translate-y-[1px] shadow-[4px_4px_0px_#050505,4px_4px_0px_1px_#D4FF00].",
+    "header": "Crystal Glass: bg-black/60, backdrop-blur-xl, border-b border-white/10."
+  },
+  "components_instructions": {
+    "Header": {
+      "structure": "Logo left, Navigation center, Theme Toggle/CTA right. Must have sticky positioning.",
+      "classes": "sticky top-0 z-50 w-full backdrop-blur-xl bg-[#050505]/80 border-b border-[#222222]"
+    },
+    "FileUploader": {
+      "type": "Custom HTML/Tailwind Dropzone",
+      "visuals": "Massive target area. Min-height: 300px. border-2 border-dashed border-[#222222] hover:border-[#D4FF00] bg-[#0F0F0F] transition-all duration-300 flex flex-col items-center justify-center p-12",
+      "content": "Use an icon (FileUp from lucide-react) + Mono font for 'DRAG & DROP PDF/IMAGES'. Support all file extensions visually."
+    },
+    "LanguageSelector": {
+      "type": "Shadcn Select",
+      "customization": "Remove rounded corners (rounded-none). border-[#222222] bg-[#0F0F0F]. Add a 'Switch' button between Source and Target languages using 'ArrowRightLeft' icon."
+    },
+    "AIProviderSelector": {
+      "type": "Radio Group / Cards",
+      "layout": "grid grid-cols-1 md:grid-cols-3 gap-4",
+      "card_style": "cursor-pointer border border-[#222222] p-4 flex flex-col items-center justify-center gap-2 transition-all hover:bg-[#121212] rounded-none",
+      "active_state": "border-[#D4FF00] bg-[#1A1A00] text-[#D4FF00]"
+    },
+    "TranslationProgress": {
+      "type": "Shadcn Progress",
+      "customization": "Track: bg-[#222222]. Indicator: bg-[#D4FF00]. Mono font for percentage text."
+    },
+    "TranslationHistory": {
+      "type": "Shadcn Table or custom List",
+      "style": "Dense, technical row format. Columns: Date, File Name, Source -> Target, Provider, Action (Download). font-mono for metadata.",
+      "empty_state": "Bordered box with text 'NO PREVIOUS TRANSLATIONS FOUND'."
+    }
+  },
+  "motion_and_interactions": {
+    "hover": "All interactive elements must have transition-all duration-200. Text contrast must increase.",
+    "focus": "focus-visible:ring-1 focus-visible:ring-[#D4FF00] focus-visible:outline-none",
+    "page_load": "Staggered fade-up for main dashboard elements using framer-motion."
+  },
+  "icons_and_assets": {
+    "icon_library": "lucide-react",
+    "required_icons": [
+      "FileUp",
+      "ArrowRightLeft",
+      "Download",
+      "Settings",
+      "History",
+      "Languages",
+      "Cpu",
+      "CheckCircle",
+      "AlertCircle"
+    ],
+    "image_urls": {}
+  },
+  "testing": {
+    "data_testids": [
+      "file-upload-dropzone",
+      "source-language-select",
+      "target-language-select",
+      "provider-openai-btn",
+      "provider-gemini-btn",
+      "provider-claude-btn",
+      "translate-submit-btn",
+      "download-result-btn",
+      "history-table"
+    ]
+  },
+  "instructions_to_main_agent": [
+    "Strictly adhere to the dark theme colors provided. No bright backgrounds allowed.",
+    "Do NOT use 'Inter' font. Install and use 'Chivo', 'IBM Plex Sans', and 'JetBrains Mono' via Google Fonts.",
+    "Build the dashboard using a dense 'Control Room' grid layout for the configuration panel (languages & providers) and a massive 'Bento' style box for the File Uploader.",
+    "Do not use Shadcn card component if it defaults to rounded corners. Force 'rounded-none' or 'rounded-sm' on everything to maintain the Swiss Brutalist aesthetic.",
+    "Add 'data-testid' to all interactive components as defined.",
+    "Use standard HTML inputs for the file upload if needed, but style the label as the dropzone.",
+    "No placeholder images. Rely on pure typography, icons, and layout for visual impact."
+  ]
+}
