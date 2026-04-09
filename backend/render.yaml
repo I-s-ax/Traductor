@@ -1,0 +1,32 @@
+# Render.com deployment configuration
+# https://render.com/docs/blueprint-spec
+
+services:
+  # Backend API Service
+  - type: web
+    name: translatehub-api
+    env: python
+    region: frankfurt  # or oregon, singapore, ohio
+    plan: starter  # or standard for more resources
+    buildCommand: |
+      apt-get update && apt-get install -y tesseract-ocr tesseract-ocr-spa tesseract-ocr-fra tesseract-ocr-deu poppler-utils fonts-dejavu-core
+      pip install -r requirements.txt
+    startCommand: uvicorn server:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/
+    envVars:
+      - key: MONGO_URL
+        sync: false  # Set manually in dashboard
+      - key: DB_NAME
+        value: translatehub
+      - key: CORS_ORIGINS
+        sync: false  # Set to your Cloudflare Pages URL
+      - key: EMERGENT_LLM_KEY
+        sync: false  # Set manually in dashboard
+      - key: PYTHON_VERSION
+        value: 3.11.0
+
+databases:
+  # MongoDB via Render (optional - you can use MongoDB Atlas instead)
+  - name: translatehub-db
+    databaseName: translatehub
+    plan: starter

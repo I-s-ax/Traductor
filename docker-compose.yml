@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: translatehub-backend
+    restart: unless-stopped
+    ports:
+      - "8001:8001"
+    environment:
+      - MONGO_URL=${MONGO_URL:-mongodb://mongo:27017}
+      - DB_NAME=${DB_NAME:-translatehub}
+      - CORS_ORIGINS=${CORS_ORIGINS:-*}
+      - EMERGENT_LLM_KEY=${EMERGENT_LLM_KEY}
+    depends_on:
+      - mongo
+    volumes:
+      - translation_files:/tmp/translate_app
+    networks:
+      - translatehub-network
+
+  mongo:
+    image: mongo:7
+    container_name: translatehub-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - translatehub-network
+
+volumes:
+  mongo_data:
+  translation_files:
+
+networks:
+  translatehub-network:
+    driver: bridge

@@ -76,3 +76,20 @@ Frontend (React) -> Backend (FastAPI) -> AI Providers (OpenAI/Gemini/Claude)
 1. Test real translation with actual PDF/image files
 2. Add batch translation support
 3. Improve PDF output formatting
+
+---
+
+## Deployment Configuration Added (January 2026)
+
+### Files Created for External Deployment:
+- `/app/backend/Dockerfile` - Docker image for Clouding.io
+- `/app/backend/render.yaml` - Render.com blueprint
+- `/app/backend/.env.example` - Environment template
+- `/app/frontend/cloudflare.toml` - Cloudflare Pages config
+- `/app/docker-compose.yml` - Full stack Docker setup
+- `/app/DEPLOYMENT.md` - Complete deployment guide
+
+### Supported Deployment Options:
+1. **Clouding.io** (Backend) + **Cloudflare Pages** (Frontend)
+2. **Render.com** (Backend) + **Cloudflare Pages** (Frontend)
+3. **Docker Compose** (Self-hosted full stack)
